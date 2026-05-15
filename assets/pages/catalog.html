@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Каталог услуг — ProFreelance Solutions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <button class="burger-btn" id="burgerBtn" aria-label="Меню"><i class="fas fa-bars"></i></button>
+      <a href="../../index.html" class="logo"><span class="logo-name">ProFreelance</span></a>
+      <div class="header-actions">
+        <button class="icon-btn theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+        <button class="icon-btn cart-icon-btn" onclick="window.location.href='corzina.html'"><i
+            class="fas fa-shopping-cart"></i><span class="badge" id="cartBadge">0</span></button>
+        <button class="btn-login" id="headerLoginBtn">Войти</button>
+        <button class="btn-login" id="headerLogoutBtn" style="display:none;">Выйти</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Мобильное меню -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header"><span class="mobile-menu-title">Меню</span><button class="close-menu"
+        id="closeMenuBtn"><i class="fas fa-times"></i></button></div>
+    <nav class="mobile-nav">
+      <a href="../../index.html">Главная</a>
+      <a href="catalog.html">Каталог услуг</a>
+      <a href="corzina.html">Корзина</a>
+      <a href="cabinet.html">Личный кабинет</a>
+      <a href="#" id="mobileLoginBtn">Войти</a>
+      <a href="#" id="mobileLogoutBtn" style="display:none;">Выйти</a>
+    </nav>
+  </div>
+
+  <!-- AUTH MODAL -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal"><button class="modal-close" id="closeAuthModalBtn"><i class="fas fa-times"></i></button>
+      <h2>Вход в аккаунт</h2>
+      <p>Введите свои данные для входа</p>
+      <div class="social-login"><button class="social-btn"><i class="fab fa-google"></i></button><button
+          class="social-btn"><i class="fab fa-vk"></i></button><button class="social-btn"><i
+            class="fab fa-telegram"></i></button></div>
+      <div class="divider">или</div>
+      <div class="form-group"><input type="email" id="loginEmail" placeholder="Email" /></div>
+      <div class="form-group"><input type="password" id="loginPassword" placeholder="Пароль" /></div>
+      <button class="btn-primary-full" id="doLoginBtn">Войти</button>
+      <div class="modal-footer">Нет аккаунта? <a href="#" id="switchToRegisterBtn">Регистрация</a></div>
+    </div>
+  </div>
+
+  <!-- REGISTER MODAL -->
+  <div class="modal-overlay" id="registerModal">
+    <div class="modal"><button class="modal-close" id="closeRegisterModalBtn"><i class="fas fa-times"></i></button>
+      <h2>Регистрация</h2>
+      <p>Создайте новый аккаунт</p>
+      <div class="form-group"><input type="text" id="regName" placeholder="Ваше имя" /></div>
+      <div class="form-group"><input type="email" id="regEmail" placeholder="Email" /></div>
+      <div class="form-group"><input type="tel" id="regPhone" placeholder="Телефон (необязательно)" /></div>
+      <div class="form-group"><input type="password" id="regPassword" placeholder="Пароль" /></div>
+      <div class="form-group"><input type="password" id="regPasswordConfirm" placeholder="Подтвердите пароль" /></div>
+      <button class="btn-primary-full" id="doRegisterBtn">Зарегистрироваться</button>
+      <div class="modal-footer">Уже есть аккаунт? <a href="#" id="switchToLoginBtn">Войти</a></div>
+    </div>
+  </div>
+
+  <!-- FILTERS MODAL -->
+  <div class="modal-overlay" id="filtersModal">
+    <div class="modal modal-full"><button class="modal-close" onclick="closeFiltersModal()"><i
+          class="fas fa-times"></i></button>
+      <h2>Фильтры</h2>
+      <div class="filter-section">
+        <h3>Категории</h3>
+        <div class="filter-list" id="categoryFilters"><label class="filter-check"><input type="checkbox"
+              value="web" /><span>Веб-разработка</span><span class="count">48</span></label><label
+            class="filter-check"><input type="checkbox" value="design" /><span>Дизайн</span><span
+              class="count">32</span></label><label class="filter-check"><input type="checkbox"
+              value="marketing" /><span>Маркетинг</span><span class="count">19</span></label><label
+            class="filter-check"><input type="checkbox" value="copywriting" /><span>Копирайтинг</span><span
+              class="count">15</span></label><label class="filter-check"><input type="checkbox"
+              value="seo" /><span>SEO</span><span class="count">11</span></label></div>
+      </div>
+      <div class="filter-section">
+        <h3>Цена (₽)</h3>
+        <div class="price-inputs"><input type="number" id="priceMin" placeholder="От" /><span>—</span><input
+            type="number" id="priceMax" placeholder="До" /></div>
+      </div>
+      <div class="filter-section">
+        <h3>Рейтинг</h3>
+        <div class="stars-filter" id="ratingFilters"><label class="star-row"><input type="checkbox" value="5" /><span
+              class="stars">★★★★★</span><span>5 звёзд (42)</span></label><label class="star-row"><input type="checkbox"
+              value="4" /><span class="stars">★★★★☆</span><span>4+ звезды (61)</span></label><label
+            class="star-row"><input type="checkbox" value="3" /><span class="stars">★★★☆☆</span><span>3+ звезды
+              (18)</span></label></div>
+      </div>
+      <div class="filter-section">
+        <h3>Срок выполнения</h3>
+        <div class="filter-list" id="deadlineFilters"><label class="filter-check"><input type="checkbox"
+              value="1" /><span>До 1 дня</span></label><label class="filter-check"><input type="checkbox"
+              value="3" /><span>До 3 дней</span></label><label class="filter-check"><input type="checkbox"
+              value="7" /><span>До 1 недели</span></label><label class="filter-check"><input type="checkbox"
+              value="14" /><span>До 2 недель</span></label></div>
+      </div>
+      <div class="filter-actions"><button class="btn-reset-full" id="resetFiltersBtn">Сбросить всё</button><button
+          class="btn-apply" id="applyFiltersBtn">Применить</button></div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <div class="page-header">
+      <div class="container page-header-inner">
+        <h1>Каталог услуг</h1>
+        <p id="totalServicesCount">124 услуги</p>
+      </div>
+    </div>
+
+    <div class="search-bar">
+      <div class="container search-bar-inner">
+        <div class="search-box"><i class="fas fa-search"></i><input type="text" id="searchInput"
+            placeholder="Поиск услуг..." /></div>
+      </div>
+    </div>
+
+    <div class="catalog-section">
+      <div class="container catalog-layout">
+
+        <div class="mobile-filters-header">
+          <button class="filter-toggle-btn" id="filterToggleBtn">
+            <i class="fas fa-filter"></i> Фильтры и сортировка
+            <i class="fas fa-chevron-down" id="filterToggleIcon"></i>
+          </button>
+        </div>
+
+        <aside class="catalog-sidebar" id="catalogSidebar">
+          <div class="sidebar-block sidebar-glow">
+            <div class="sidebar-header" data-accordion="sort">
+              <h3><i class="fas fa-sort-amount-down"></i> Сортировка</h3>
+              <i class="fas fa-chevron-down accordion-icon"></i>
+            </div>
+            <div class="sidebar-content" id="sortContent">
+              <div class="sort-list">
+                <button class="sort-pill active" data-sort="default">По умолчанию</button>
+                <button class="sort-pill" data-sort="price-asc">Цена ↑ (сначала дешёвые)</button>
+                <button class="sort-pill" data-sort="price-desc">Цена ↓ (сначала дорогие)</button>
+                <button class="sort-pill" data-sort="rating">Рейтинг (сначала высокие)</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-block sidebar-glow">
+            <div class="sidebar-header" data-accordion="categories">
+              <h3><i class="fas fa-tags"></i> Категории</h3>
+              <i class="fas fa-chevron-down accordion-icon"></i>
+            </div>
+            <div class="sidebar-content" id="categoriesContent">
+              <div class="filter-chips" id="categoryFiltersDesktop">
+                <label class="filter-chip"><input type="checkbox" value="web" /> Веб-разработка</label>
+                <label class="filter-chip"><input type="checkbox" value="design" /> Дизайн</label>
+                <label class="filter-chip"><input type="checkbox" value="marketing" /> Маркетинг</label>
+                <label class="filter-chip"><input type="checkbox" value="copywriting" /> Копирайтинг</label>
+                <label class="filter-chip"><input type="checkbox" value="seo" /> SEO</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-block sidebar-glow">
+            <div class="sidebar-header" data-accordion="price">
+              <h3><i class="fas fa-ruble-sign"></i> Цена</h3>
+              <i class="fas fa-chevron-down accordion-icon"></i>
+            </div>
+            <div class="sidebar-content" id="priceContent">
+              <div class="price-range">
+                <input type="number" id="priceMinDesktop" placeholder="От ₽" />
+                <span>—</span>
+                <input type="number" id="priceMaxDesktop" placeholder="До ₽" />
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-block sidebar-glow">
+            <div class="sidebar-header" data-accordion="rating">
+              <h3><i class="fas fa-star"></i> Рейтинг</h3>
+              <i class="fas fa-chevron-down accordion-icon"></i>
+            </div>
+            <div class="sidebar-content" id="ratingContent">
+              <div class="filter-chips" id="ratingFiltersDesktop">
+                <label class="filter-chip"><input type="checkbox" value="5" /> ★★★★★ 5</label>
+                <label class="filter-chip"><input type="checkbox" value="4" /> ★★★★☆ 4+</label>
+                <label class="filter-chip"><input type="checkbox" value="3" /> ★★★☆☆ 3+</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-block sidebar-glow">
+            <div class="sidebar-header" data-accordion="deadline">
+              <h3><i class="fas fa-clock"></i> Срок выполнения</h3>
+              <i class="fas fa-chevron-down accordion-icon"></i>
+            </div>
+            <div class="sidebar-content" id="deadlineContent">
+              <div class="filter-chips" id="deadlineFiltersDesktop">
+                <label class="filter-chip"><input type="checkbox" value="1" /> До 1 дня</label>
+                <label class="filter-chip"><input type="checkbox" value="3" /> До 3 дней</label>
+                <label class="filter-chip"><input type="checkbox" value="7" /> До недели</label>
+                <label class="filter-chip"><input type="checkbox" value="14" /> До 2 недель</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="sidebar-actions">
+            <button class="btn-sidebar-apply" id="applySidebarFilters">Применить фильтры</button>
+            <button class="btn-sidebar-reset" id="resetSidebarFilters">Сбросить всё</button>
+          </div>
+        </aside>
+
+        <div class="catalog-main">
+          <div class="results-bar">
+            <span>Найдено <strong id="foundCount">0</strong> услуг</span>
+            <button class="filter-btn-mobile" id="mobileFilterBtn"><i class="fas fa-sliders-h"></i> Фильтры</button>
+          </div>
+          <div class="services-grid" id="servicesGrid"></div>
+          <div class="load-more"><button class="btn-load-more" id="loadMoreBtn">Загрузить ещё</button></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">ProFreelance</div>
+      <div class="footer-links"><a href="#">О нас</a><a href="#">Правила</a><a href="#">Безопасность</a><a
+          href="#">Помощь</a></div>
+      <div class="footer-copyright">© 2024 ProFreelance. Все права защищены</div>
+    </div>
+  </footer>
+
+  <button class="back-top" id="backTop"><i class="fas fa-arrow-up"></i></button>
+  <script src="../js/glav.js"></script>
+</body>
+
+</html>

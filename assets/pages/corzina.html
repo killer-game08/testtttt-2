@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>ProFreelance — Корзина</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <button class="burger-btn" id="burgerBtn" aria-label="Меню"><i class="fas fa-bars"></i></button>
+      <!-- ИСПРАВЛЕНО: путь на главную из pages/ -->
+      <a href="../../index.html" class="logo"><span class="logo-name">ProFreelance</span></a>
+      <div class="header-actions">
+        <button class="icon-btn theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+        <!-- ИСПРАВЛЕНО: путь к корзине в той же папке -->
+        <button class="icon-btn cart-icon-btn" onclick="window.location.href='corzina.html'" style="position: relative;"><i
+            class="fas fa-shopping-cart"></i><span class="badge" id="cartBadge">3</span></button>
+        <button class="btn-login" id="headerLoginBtn">Войти</button>
+        <button class="btn-login" id="headerLogoutBtn" style="display:none;">Выйти</button>
+      </div>
+    </div>
+  </header>
+
+   <!-- Мобильное меню -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header"><span class="mobile-menu-title">Меню</span><button class="close-menu"
+        id="closeMenuBtn"><i class="fas fa-times"></i></button></div>
+    <nav class="mobile-nav">
+      <a href="../../index.html">Главная</a>
+      <a href="catalog.html">Каталог услуг</a>
+      <a href="corzina.html">Корзина</a>
+      <a href="cabinet.html">Личный кабинет</a>
+      <a href="#" id="mobileLoginBtn">Войти</a>
+      <a href="#" id="mobileLogoutBtn" style="display:none;">Выйти</a>
+    </nav>
+  </div>
+
+  <!-- AUTH MODAL -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal"><button class="modal-close" id="closeAuthModalBtn"><i class="fas fa-times"></i></button>
+      <h2>Вход в аккаунт</h2>
+      <p>Введите свои данные для входа</p>
+      <div class="social-login"><button class="social-btn"><i class="fab fa-google"></i></button><button
+          class="social-btn"><i class="fab fa-vk"></i></button><button class="social-btn"><i
+            class="fab fa-telegram"></i></button></div>
+      <div class="divider">или</div>
+      <div class="form-group"><input type="email" id="loginEmail" placeholder="Email" /></div>
+      <div class="form-group"><input type="password" id="loginPassword" placeholder="Пароль" /></div>
+      <button class="btn-primary-full" id="doLoginBtn">Войти</button>
+      <div class="modal-footer">Нет аккаунта? <a href="#" id="switchToRegisterBtn">Регистрация</a></div>
+    </div>
+  </div>
+
+  <!-- REGISTER MODAL -->
+  <div class="modal-overlay" id="registerModal">
+    <div class="modal"><button class="modal-close" id="closeRegisterModalBtn"><i class="fas fa-times"></i></button>
+      <h2>Регистрация</h2>
+      <p>Создайте новый аккаунт</p>
+      <div class="form-group"><input type="text" id="regName" placeholder="Ваше имя" /></div>
+      <div class="form-group"><input type="email" id="regEmail" placeholder="Email" /></div>
+      <div class="form-group"><input type="tel" id="regPhone" placeholder="Телефон (необязательно)" /></div>
+      <div class="form-group"><input type="password" id="regPassword" placeholder="Пароль" /></div>
+      <div class="form-group"><input type="password" id="regPasswordConfirm" placeholder="Подтвердите пароль" /></div>
+      <button class="btn-primary-full" id="doRegisterBtn">Зарегистрироваться</button>
+      <div class="modal-footer">Уже есть аккаунт? <a href="#" id="switchToLoginBtn">Войти</a></div>
+    </div>
+  </div>
+
+  <!-- ЗАГОЛОВОК -->
+  <div class="page-title-bar">
+    <div class="page-title-bar-inner">
+      <h1>Корзина</h1>
+      <span class="cart-count" id="cartCount">3 услуги</span>
+    </div>
+  </div>
+
+  <!-- ОСНОВНОЙ КОНТЕНТ -->
+  <div class="main">
+    <div id="cartItemsContainer">
+      <div class="cart-list" id="cartList">
+        <div class="cart-item" data-id="1" data-price="15000">
+          <div class="item-avatar" style="background:linear-gradient(135deg,#1a5ce5,#3593F2);">АК</div>
+          <div class="item-info">
+            <div class="item-title">Landing Page на React</div>
+            <div class="item-author"><i class="fas fa-user"></i>Алексей К.</div>
+            <div class="item-params"><span class="item-param"><i class="fas fa-clock"></i>7 дн.</span><span
+                class="item-param"><i class="fas fa-code"></i>Веб</span></div>
+          </div>
+          <div class="item-right">
+            <div class="item-price">15 000 ₽</div><button class="item-delete"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+        <div class="cart-item" data-id="2" data-price="25000">
+          <div class="item-avatar" style="background:linear-gradient(135deg,#db2777,#9333ea);">МС</div>
+          <div class="item-info">
+            <div class="item-title">UI/UX дизайн в Figma</div>
+            <div class="item-author"><i class="fas fa-user"></i>Мария С.</div>
+            <div class="item-params"><span class="item-param"><i class="fas fa-clock"></i>14 дн.</span><span
+                class="item-param"><i class="fas fa-palette"></i>Дизайн</span></div>
+          </div>
+          <div class="item-right">
+            <div class="item-price">25 000 ₽</div><button class="item-delete"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+        <div class="cart-item" data-id="3" data-price="12000">
+          <div class="item-avatar" style="background:linear-gradient(135deg,#9333ea,#7c3aed);">ОЛ</div>
+          <div class="item-info">
+            <div class="item-title">Таргетинг ВКонтакте</div>
+            <div class="item-author"><i class="fas fa-user"></i>Ольга Л.</div>
+            <div class="item-params"><span class="item-param"><i class="fas fa-clock"></i>1 мес.</span><span
+                class="item-param"><i class="fas fa-bullhorn"></i>Маркетинг</span></div>
+          </div>
+          <div class="item-right">
+            <div class="item-price">12 000 ₽</div><button class="item-delete"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="empty-cart-message hidden" id="emptyCartMessage">
+      <i class="fas fa-shopping-basket"></i>
+      <p>Ваша корзина пуста</p>
+      <!-- ИСПРАВЛЕНО: путь к каталогу в той же папке -->
+      <a href="catalog.html" class="btn-empty-continue">Перейти в каталог</a>
+    </div>
+
+    <div class="summary-card" id="summaryCard">
+      <h3><i class="fas fa-receipt"></i> Итого</h3>
+      <div id="summaryItems"></div>
+      <div class="promo-row"><input type="text" class="promo-input" id="promoCode" placeholder="Промокод"><button
+          class="promo-btn" id="applyPromo">Применить</button></div>
+      <div class="promo-feedback" id="promoFeedback"></div>
+      <div class="total-row"><span class="total-label">Итого:</span><span class="total-price" id="totalPrice">52 000
+          ₽</span></div>
+      <button class="btn-checkout" id="checkoutBtn"><i class="fas fa-lock"></i> Оформить</button>
+      <!-- ИСПРАВЛЕНО: путь к каталогу -->
+      <a href="catalog.html" class="continue-link"><i class="fas fa-arrow-left"></i> Продолжить покупки</a>
+      <div class="guarantees">
+        <div class="guarantee-item">
+          <div class="guarantee-icon"><i class="fas fa-shield-alt"></i></div><span>Безопасная оплата</span>
+        </div>
+        <div class="guarantee-item">
+          <div class="guarantee-icon"><i class="fas fa-undo"></i></div><span>Возврат средств</span>
+        </div>
+        <div class="guarantee-item">
+          <div class="guarantee-icon"><i class="fas fa-headset"></i></div><span>Поддержка 24/7</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="recommendations">
+    <h2>Вам может понравиться</h2>
+    <div class="rec-grid" id="recommendationsGrid"></div>
+  </div>
+
+  <button class="back-top" id="backTopBtn"><i class="fas fa-arrow-up"></i></button>
+    <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">ProFreelance</div>
+      <div class="footer-links"><a href="#">О нас</a><a href="#">Правила</a><a href="#">Безопасность</a><a
+          href="#">Помощь</a></div>
+      <div class="footer-copyright">© 2024 ProFreelance. Все права защищены</div>
+    </div>
+  </footer>
+  <script src="../js/glav.js"></script>
+</body>
+
+</html>

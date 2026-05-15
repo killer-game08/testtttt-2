@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>ProFreelance Solutions — Панель администратора</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <div class="admin-wrapper">
+    <!-- TOPBAR -->
+    <div class="admin-topbar">
+      <div class="admin-logo">
+        <div>
+          <div class="logo-text">ProFreelance</div>
+          <div class="logo-sub">Панель администратора</div>
+        </div>
+      </div>
+      <div class="admin-topbar-actions">
+        <div class="admin-user-info">
+          <div class="admin-avatar">АД</div>
+          <div>
+            <div class="admin-name">Администратор</div>
+            <div class="admin-role">Суперадмин</div>
+          </div>
+        </div>
+        <button class="icon-btn" onclick="adminLogout()"><i class="fas fa-sign-out-alt"></i></button>
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-tab="dashboard"><i class="fas fa-home"></i> Дашборд</button>
+      <button class="admin-tab" data-tab="users"><i class="fas fa-users"></i> Пользователи <span class="tab-count" id="usersCount">12</span></button>
+      <button class="admin-tab" data-tab="orders"><i class="fas fa-box"></i> Заказы <span class="tab-count">5</span></button>
+      <button class="admin-tab" data-tab="complaints"><i class="fas fa-exclamation-triangle"></i> Жалобы <span class="tab-count danger">3</span></button>
+      <button class="admin-tab" data-tab="settings"><i class="fas fa-cog"></i> Настройки</button>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="admin-content">
+      <!-- TAB: DASHBOARD -->
+      <div class="tab-pane active" id="dashboardPane">
+        <div class="widgets-grid">
+          <div class="widget"><div class="widget-icon" style="background:#dbeafe;"><i class="fas fa-users" style="color:var(--primary);"></i></div><div class="widget-info"><div class="widget-label">Всего пользователей</div><div class="widget-value" id="totalUsersWidget">1 524</div><div class="widget-trend trend-up">+12 за неделю</div></div></div>
+          <div class="widget"><div class="widget-icon" style="background:#dcfce7;"><i class="fas fa-box-open" style="color:var(--success);"></i></div><div class="widget-info"><div class="widget-label">Активных заказов</div><div class="widget-value">89</div><div class="widget-trend trend-up">+5 сегодня</div></div></div>
+          <div class="widget"><div class="widget-icon" style="background:#fef9c3;"><i class="fas fa-ruble-sign" style="color:var(--warning);"></i></div><div class="widget-info"><div class="widget-label">Выручка за месяц</div><div class="widget-value">1 234 500 ₽</div><div class="widget-trend trend-up">+8.2%</div></div></div>
+          <div class="widget"><div class="widget-icon" style="background:#fee2e2;"><i class="fas fa-exclamation-triangle" style="color:var(--danger);"></i></div><div class="widget-info"><div class="widget-label">Открытых жалоб</div><div class="widget-value">3</div><div class="widget-trend">Требует внимания</div></div></div>
+        </div>
+        <div class="table-card"><div class="table-card-header"><h3>Последние заказы</h3><button class="btn-view-all">Все заказы →</button></div><div style="overflow-x:auto;"><table class="data-table"><thead><tr><th>№</th><th>Услуга</th><th>Сумма</th><th>Статус</th></tr></thead><tbody><tr><td style="font-weight:700;color:var(--primary);">#1024</td><td>Landing Page на React</td><td>15 000 ₽</td><td><span class="order-status-sm os-work"><i class="fas fa-circle"></i>В работе</span></td></tr><tr><td style="font-weight:700;color:var(--primary);">#1023</td><td>UI/UX дизайн приложения</td><td>25 000 ₽</td><td><span class="order-status-sm os-done"><i class="fas fa-check"></i>Выполнен</span></td></tr><tr><td style="font-weight:700;color:var(--primary);">#1022</td><td>SEO-продвижение</td><td>8 000 ₽</td><td><span class="order-status-sm os-pend"><i class="fas fa-clock"></i>Ожидает</span></td></tr></tbody></table></div></div>
+      </div>
+
+      <!-- TAB: USERS -->
+      <div class="tab-pane" id="usersPane">
+        <div class="users-controls">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="userSearchInput" placeholder="Поиск по имени, email или телефону...">
+          </div>
+          <div class="filter-buttons">
+            <button class="filter-chip-btn active" data-filter="all">Все</button>
+            <button class="filter-chip-btn" data-filter="active">Активные</button>
+            <button class="filter-chip-btn" data-filter="blocked">Заблокированные</button>
+            <button class="filter-chip-btn" data-filter="freelancer">Фрилансеры</button>
+            <button class="filter-chip-btn" data-filter="client">Заказчики</button>
+          </div>
+          <button class="btn-primary" id="addUserBtn"><i class="fas fa-user-plus"></i> Добавить пользователя</button>
+        </div>
+        
+        <div style="overflow-x:auto;">
+          <table class="data-table users-table">
+            <thead>
+              <tr><th>Пользователь</th><th>Тип</th><th>Статус</th><th>Телефон</th><th>Дата регистрации</th><th>Действия</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody">
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination" id="usersPagination"></div>
+      </div>
+
+      <!-- TAB: ORDERS -->
+      <div class="tab-pane" id="ordersPane">
+        <div class="table-card"><h3>Список заказов</h3><p style="color:var(--text-gray); padding:20px;">Здесь будет список всех заказов с возможностью управления.</p></div>
+      </div>
+
+      <!-- TAB: COMPLAINTS -->
+      <div class="tab-pane" id="complaintsPane">
+        <div class="table-card"><h3>Жалобы и обращения</h3><p style="color:var(--text-gray); padding:20px;">Здесь будут жалобы пользователей.</p></div>
+      </div>
+
+      <!-- TAB: SETTINGS -->
+      <div class="tab-pane" id="settingsPane">
+        <div class="settings-card"><h3>Настройки платформы</h3><p style="color:var(--text-gray);">Настройки комиссии, модерации и т.д.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="userModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeUserModal()"><i class="fas fa-times"></i></button>
+      <h2 id="modalTitle">Добавить пользователя</h2>
+      <form id="userForm">
+        <input type="hidden" id="editUserId">
+        <div class="form-group"><input type="text" id="userName" placeholder="ФИО" required></div>
+        <div class="form-group"><input type="email" id="userEmail" placeholder="Email" required></div>
+        <div class="form-group"><input type="tel" id="userPhone" placeholder="Телефон"></div>
+        <div class="form-group"><select id="userType"><option value="client">Заказчик</option><option value="freelancer">Фрилансер</option></select></div>
+        <div class="form-group"><select id="userStatus"><option value="active">Активный</option><option value="blocked">Заблокирован</option></select></div>
+        <button type="submit" class="btn-primary-full">Сохранить</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ИСПРАВЛЕНО: путь к JS из pages/ в js/ -->
+  <script src="../js/glav.js"></script>
+</body>
+</html>

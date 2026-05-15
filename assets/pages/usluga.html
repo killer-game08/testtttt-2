@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Разработка сайта под ключ — ProFreelance</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- ИСПРАВЛЕНО: путь к CSS из pages/ в css/ -->
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <button class="burger-btn" id="burgerBtn" aria-label="Меню"><i class="fas fa-bars"></i></button>
+      <!-- ИСПРАВЛЕНО: путь назад в ту же папку -->
+      <button class="back-btn"><a href="catalog.html"><i class="fas fa-arrow-left"></i></a></button>
+      <!-- ИСПРАВЛЕНО: путь на главную из pages/ в корень -->
+      <a href="../../index.html" class="logo"><span class="logo-name">ProFreelance</span></a>
+      <div class="header-actions">
+        <button class="icon-btn theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+        <!-- ИСПРАВЛЕНО: путь к корзине в той же папке -->
+        <button class="icon-btn" onclick="window.location.href='corzina.html'"><i class="fas fa-shopping-cart"></i><span
+            class="badge" id="cartBadge">0</span></button>
+        <button class="btn-login" id="headerLoginBtn">Войти</button>
+        <button class="btn-login" id="headerLogoutBtn" style="display:none;">Выйти</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header"><span class="mobile-menu-title">Меню</span><button class="close-menu"
+        id="closeMenuBtn"><i class="fas fa-times"></i></button></div>
+    <nav class="mobile-nav">
+      <!-- ИСПРАВЛЕНО: все пути относительно текущей папки pages/ -->
+      <a href="../../index.html">Главная</a>
+      <a href="catalog.html">Каталог услуг</a>
+      <a href="corzina.html">Корзина</a>
+      <a href="cabinet.html">Личный кабинет</a>
+      <a href="#" id="mobileLoginBtn">Войти</a>
+      <a href="#" id="mobileLogoutBtn" style="display:none;">Выйти</a>
+    </nav>
+  </div>
+
+  <!-- AUTH MODAL -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal"><button class="modal-close" id="closeAuthModalBtn"><i class="fas fa-times"></i></button>
+      <h2>Вход в аккаунт</h2>
+      <p>Введите свои данные для входа</p>
+      <div class="social-login"><button class="social-btn"><i class="fab fa-google"></i></button><button
+          class="social-btn"><i class="fab fa-vk"></i></button><button class="social-btn"><i
+            class="fab fa-telegram"></i></button></div>
+      <div class="divider">или</div>
+      <div class="form-group"><input type="email" id="loginEmail" placeholder="Email" /></div>
+      <div class="form-group"><input type="password" id="loginPassword" placeholder="Пароль" /></div>
+      <button class="btn-primary-full" id="doLoginBtn">Войти</button>
+      <div class="modal-footer">Нет аккаунта? <a href="#" id="switchToRegisterBtn">Регистрация</a></div>
+    </div>
+  </div>
+
+  <!-- REGISTER MODAL -->
+  <div class="modal-overlay" id="registerModal">
+    <div class="modal"><button class="modal-close" id="closeRegisterModalBtn"><i class="fas fa-times"></i></button>
+      <h2>Регистрация</h2>
+      <p>Создайте новый аккаунт</p>
+      <div class="form-group"><input type="text" id="regName" placeholder="Ваше имя" /></div>
+      <div class="form-group"><input type="email" id="regEmail" placeholder="Email" /></div>
+      <div class="form-group"><input type="tel" id="regPhone" placeholder="Телефон (необязательно)" /></div>
+      <div class="form-group"><input type="password" id="regPassword" placeholder="Пароль" /></div>
+      <div class="form-group"><input type="password" id="regPasswordConfirm" placeholder="Подтвердите пароль" /></div>
+      <button class="btn-primary-full" id="doRegisterBtn">Зарегистрироваться</button>
+      <div class="modal-footer">Уже есть аккаунт? <a href="#" id="switchToLoginBtn">Войти</a></div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+    <div class="content-wrapper container">
+      <div class="left-column">
+        <div class="author-card">
+          <div class="author-avatar"><span>АК</span></div>
+          <div class="author-info">
+            <h3>Алексей К.</h3>
+            <div class="rating"><i class="fas fa-star"></i><span>4.9</span><span class="reviews">(128 отзывов)</span>
+            </div>
+            <span class="online-badge"><span class="online-dot"></span>Онлайн</span>
+          </div>
+        </div>
+        <h1 class="service-title">Разработка современного сайта под ключ</h1>
+
+        <div class="section-block">
+          <h3><i class="fas fa-images"></i> Портфолио</h3>
+          <div class="portfolio-slider">
+            <div class="portfolio-slides" id="portfolioSlides">
+              <div class="portfolio-slide ps-1">Сайт интернет-магазина</div>
+              <div class="portfolio-slide ps-2">Корпоративный портал</div>
+              <div class="portfolio-slide ps-3">Лендинг для стартапа</div>
+              <div class="portfolio-slide ps-4">Мобильное приложение</div>
+            </div>
+            <div class="portfolio-dots" id="portfolioDots">
+              <div class="p-dot active"></div>
+              <div class="p-dot"></div>
+              <div class="p-dot"></div>
+              <div class="p-dot"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-block">
+          <div class="tabs">
+            <div class="tabs-header">
+              <button class="tab-btn active" data-tab="description">Описание</button>
+              <button class="tab-btn" data-tab="details">Детали</button>
+              <button class="tab-btn" data-tab="faq">Вопросы</button>
+            </div>
+            <div class="tabs-content">
+              <div class="tab-panel active" id="description">
+                <p>Разработаю современный, адаптивный сайт под ключ. Использую React, Vue.js или чистый HTML/CSS в
+                  зависимости от требований проекта.</p>
+                <p>Оптимизирую скорость загрузки, сделаю удобную админ-панель и настрою SEO-базу для продвижения в
+                  поисковых системах.</p>
+              </div>
+              <div class="tab-panel" id="details">
+                <div class="details-grid">
+                  <div class="detail-item"><i class="fas fa-layer-group"></i>
+                    <div><strong>Тип сайта</strong><span> Лендинг, корпоративный, магазин</span></div>
+                  </div>
+                  <div class="detail-item"><i class="fas fa-palette"></i>
+                    <div><strong>Дизайн</strong><span> Индивидуальный, не шаблонный</span></div>
+                  </div>
+                  <div class="detail-item"><i class="fas fa-mobile-alt"></i>
+                    <div><strong>Адаптивность</strong><span> Все устройства и браузеры</span></div>
+                  </div>
+                  <div class="detail-item"><i class="fas fa-tachometer-alt"></i>
+                    <div><strong>Скорость</strong><span> 90+ по PageSpeed</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-panel" id="faq">
+                <div class="accordion" id="faqAccordion">
+                  <div class="accordion-item"><button class="accordion-header" type="button"><span>Сколько времени
+                        занимает разработка?</span><i class="fas fa-chevron-down"></i></button>
+                    <div class="accordion-body">
+                      <div class="accordion-content">
+                        <p>Средний срок разработки сайта под ключ составляет 10-15 рабочих дней.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item"><button class="accordion-header" type="button"><span>Как происходит
+                        оплата?</span><i class="fas fa-chevron-down"></i></button>
+                    <div class="accordion-body">
+                      <div class="accordion-content">
+                        <p>Работаю по предоплате 50% перед началом работы и 50% после сдачи проекта.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item"><button class="accordion-header" type="button"><span>Что если мне не
+                        понравится результат?</span><i class="fas fa-chevron-down"></i></button>
+                    <div class="accordion-body">
+                      <div class="accordion-content">
+                        <p>Я предоставляю 3 варианта дизайна на выбор и бесплатные правки в течение 30 дней.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-block">
+          <h3><i class="fas fa-check-double"></i> Что входит в услугу</h3>
+          <div class="include-list">
+            <div class="include-item"><i class="fas fa-check-circle"></i><span>Индивидуальный дизайн (3 варианта)</span>
+            </div>
+            <div class="include-item"><i class="fas fa-check-circle"></i><span>Адаптивная верстка под все
+                устройства</span></div>
+            <div class="include-item"><i class="fas fa-check-circle"></i><span>Настройка CMS (WordPress / Tilda)</span>
+            </div>
+            <div class="include-item"><i class="fas fa-check-circle"></i><span>Базовая SEO оптимизация</span></div>
+            <div class="include-item"><i class="fas fa-check-circle"></i><span>1 месяц бесплатной поддержки</span></div>
+          </div>
+        </div>
+
+        <div class="similar-section">
+          <h2><i class="fas fa-th-large"></i> Похожие услуги</h2>
+          <div class="similar-list">
+            <!-- ИСПРАВЛЕНО: пути в той же папке -->
+            <div class="similar-card" onclick="location.href='usluga.html?id=2'">
+              <div class="card-title">Создание интернет-магазина</div>
+              <div class="card-price">от 35 000 ₽</div>
+              <div class="card-author">Екатерина М.</div>
+              <div class="card-rating"><i class="fas fa-star"></i> 4.8</div>
+            </div>
+            <div class="similar-card" onclick="location.href='usluga.html?id=3'">
+              <div class="card-title">Лендинг для бизнеса</div>
+              <div class="card-price">от 15 000 ₽</div>
+              <div class="card-author">Дмитрий К.</div>
+              <div class="card-rating"><i class="fas fa-star"></i> 5.0</div>
+            </div>
+            <div class="similar-card" onclick="location.href='usluga.html?id=4'">
+              <div class="card-title">Редизайн сайта</div>
+              <div class="card-price">от 20 000 ₽</div>
+              <div class="card-author">Анна С.</div>
+              <div class="card-rating"><i class="fas fa-star"></i> 4.7</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-column">
+        <div class="price-card-desktop">
+          <div class="price-header"><span class="price-label">Стоимость</span><span class="price-value">от 25 000
+              ₽</span></div>
+          <button class="btn-order-desktop" onclick="openLoginModal()"><i class="fas fa-shopping-cart"></i> Заказать
+            сейчас</button>
+          <button class="btn-add-cart"
+            onclick="addToCart({id:1, name:'Разработка сайта под ключ', price:25000, author:'Алексей К.'})"><i
+              class="fas fa-plus"></i> Добавить в корзину</button>
+          <div class="price-features">
+            <div class="price-feature"><i class="fas fa-check"></i><span>Безопасная сделка</span></div>
+            <div class="price-feature"><i class="fas fa-check"></i><span>Оплата по факту</span></div>
+            <div class="price-feature"><i class="fas fa-check"></i><span>Поддержка 24/7</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">ProFreelance</div>
+      <div class="footer-links"><a href="#">О нас</a><a href="#">Правила</a><a href="#">Безопасность</a><a
+          href="#">Помощь</a></div>
+      <div class="footer-copyright">© 2024 ProFreelance. Все права защищены</div>
+    </div>
+  </footer>
+
+  <button class="back-top" id="backTop"><i class="fas fa-arrow-up"></i></button>
+  <!-- ИСПРАВЛЕНО: путь к JS из pages/ в js/ -->
+  <script src="../js/glav.js"></script>
+</body>
+
+</html>
